@@ -4,22 +4,30 @@ import com.google.gson.annotations.SerializedName
 import com.saltedge.hackathon.domain.model.Account
 
 data class AccountDto(
-    val Account: AccountX,
-    val AccountId: String,
-    val AccountSubType: String,
-    val AccountType: String,
-    @SerializedName("Currency") //TODO: use name convection for all variables
+    @SerializedName("Account")
+    val account: AccountX,
+    @SerializedName("AccountId")
+    val accountId: String,
+    @SerializedName("AccountSubType")
+    val accountSubType: String,
+    @SerializedName("AccountType")
+    val accountType: String,
+    @SerializedName("Currency")
     val currency: String,
-    val Description: String,
-    val Nickname: String,
-    val Servicer: Servicer,
-    val SwitchStatus: String
+    @SerializedName("Description")
+    val description: String,
+    @SerializedName("Nickname")
+    val nickname: String,
+    @SerializedName("Servicer")
+    val servicer: Servicer,
+    @SerializedName("SwitchStatus")
+    val switchStatus: String
 )
 
  fun AccountDto.toAccount(): Account {
      return Account(
          currency = currency,
-         description = Description,
-         nickname = Nickname
+         description = description,
+         nickname = nickname
      )
  }

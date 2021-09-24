@@ -1,8 +1,6 @@
 package com.saltedge.hackathon.domain.use_case.get_account
 
 import com.saltedge.hackathon.common.Resource
-import com.saltedge.hackathon.data.remote.dto.AccountsDto
-import com.saltedge.hackathon.data.remote.dto.toAccount
 import com.saltedge.hackathon.domain.model.Account
 import com.saltedge.hackathon.domain.repository.AccountRepository
 import kotlinx.coroutines.flow.Flow
@@ -18,8 +16,9 @@ class GetAccountUseCase @Inject constructor(
     operator fun invoke(accountId: String): Flow<Resource<Account>> = flow {
         try {
             emit(Resource.Loading())
-            val account = repository.getAccountById(accountId = accountId).toAccount()
-            emit(Resource.Success(account))
+            val account: Account? = repository.getAccountById(accountId = accountId)
+            if (account != null) emit(Resource.Success(account))
+            else emit(Resource.Error("There is no account with this id"))
         } catch (e: HttpException) {
             emit(Resource.Error(message = e.localizedMessage ?: "An unexpected error occured"))
         } catch (e: IOException) {

@@ -1,7 +1,12 @@
 package com.saltedge.hackathon.data.remote.dto
 
+import com.google.gson.annotations.SerializedName
+
 data class Links(
-    val Next: String,
-    val Prev: String,
-    val Self: String
+    @SerializedName("Next")
+    val next: String,
+    @SerializedName("Prev")
+    val prev: String,
+    @SerializedName("Self")
+    val self: String
 )

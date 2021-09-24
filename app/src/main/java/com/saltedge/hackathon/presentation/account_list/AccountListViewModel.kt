@@ -25,9 +25,9 @@ class AccountListViewModel @Inject constructor(
 
     private fun getAccounts() {
         getAccountsUseCase().onEach { result ->
-            when(result) {
+            when (result) {
                 is Resource.Success -> {
-//                    _state.value = AccountListState(accounts = result.data ?: emptyList())
+                    _state.value = AccountListState(accounts = result.data ?: emptyList())
                 }
                 is Resource.Error -> {
                     _state.value = AccountListState(error = result.message ?: "Something went wrong")
@@ -38,5 +38,4 @@ class AccountListViewModel @Inject constructor(
             }
         }.launchIn(viewModelScope)
     }
-
 }
