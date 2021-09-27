@@ -31,7 +31,7 @@ class MainActivity : ComponentActivity() {
                             AccountListScreen(navController)
                         }
 //                        composable(
-//                            route = Screen.AccountDetailScreen.route + "/{accountId}"
+//                            route = Screen.AccountDetailScreen.route + "/{accountId}" //TODO: Prepare for AccountDetailScreen UI
 //                        ) {
 //                            AccountDetailScreen()
 //                        }
