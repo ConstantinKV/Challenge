@@ -5,7 +5,7 @@ package com.saltedge.hackathon.domain.model
  */
 data class Account(
 //    val Account: AccountX,
-//    val AccountId: String,
+    val accountId: String,
 //    val AccountSubType: String,
 //    val AccountType: String,
     val currency: String,

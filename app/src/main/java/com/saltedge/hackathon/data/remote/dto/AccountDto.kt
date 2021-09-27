@@ -26,6 +26,7 @@ data class AccountDto(
 
  fun AccountDto.toAccount(): Account {
      return Account(
+         accountId = accountId,
          currency = currency,
          description = description,
          nickname = nickname
