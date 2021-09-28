@@ -16,13 +16,13 @@ class GetAccountsUseCase @Inject constructor(
 
     operator fun invoke(): Flow<Resource<List<Account>>> = flow {
         try {
-            emit(Resource.Loading())
+            emit(Resource.Loading<List<Account>>())
             val accounts: List<Account> = repository.getAccounts().data.accounts.map { it.toAccount() }
-            emit(Resource.Success(accounts))
+            emit(Resource.Success<List<Account>>(accounts))
         } catch (e: HttpException) {
-            emit(Resource.Error(message = e.localizedMessage ?: "An unexpected error occured"))
+            emit(Resource.Error<List<Account>>(message = e.localizedMessage ?: "An unexpected error occured"))
         } catch (e: IOException) {
-            emit(Resource.Error(message = "Couldn't reach server. Check your Internet connection"))
+            emit(Resource.Error<List<Account>>(message = "Couldn't reach server. Check your Internet connection"))
         }
     }
 }
