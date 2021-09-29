@@ -1,7 +1,9 @@
 package com.saltedge.hackathon.data.remote
 
 import com.saltedge.hackathon.data.remote.dto.AccountsResponse
+import com.saltedge.hackathon.data.remote.dto.consent.ConsentResponse
 import com.saltedge.hackathon.data.remote.dto.token.AccessTokenResponse
+import com.saltedge.hackathon.data.remote.request.CreateConsentRequest
 import retrofit2.http.*
 
 interface ApiInterface {
@@ -17,6 +19,18 @@ interface ApiInterface {
         @Query("client_secret") clientSecret: String,
         @Query("scope") scope: String,
     ): AccessTokenResponse
+
+    //TODO:  remove the hard code and think about how to take everything out to some HeaderInterceptor
+    @Headers(
+        "Authorization: Bearer ACCESS_TOKEN",
+        "Accept: application/json",
+        "Content-Type: application/json"
+    )
+    @POST("/open-banking/v3.1/aisp/account-access-consents")
+    suspend fun createConsent(
+        @Header("ACCESS_TOKEN") accessToken: String,
+        @Body body: CreateConsentRequest
+    ): ConsentResponse
 
     @GET("/accounts")
     suspend fun getAccounts(): AccountsResponse

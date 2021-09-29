@@ -4,9 +4,11 @@ import com.saltedge.hackathon.common.Constants
 import com.saltedge.hackathon.data.remote.ApiInterface
 import com.saltedge.hackathon.data.remote.network.getUnsafeOkHttpClient
 import com.saltedge.hackathon.data.repository.AccountRepositoryImpl
-import com.saltedge.hackathon.data.repository.TokenRepositoryImpl
+import com.saltedge.hackathon.data.repository.ConsentRepositoryImpl
+import com.saltedge.hackathon.data.repository.AccessTokenRepositoryImpl
+import com.saltedge.hackathon.domain.repository.AccessTokenRepository
 import com.saltedge.hackathon.domain.repository.AccountRepository
-import com.saltedge.hackathon.domain.repository.TokenRepository
+import com.saltedge.hackathon.domain.repository.ConsentRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -47,7 +49,13 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideTokenRepository(api: ApiInterface): TokenRepository {
-        return TokenRepositoryImpl(api = api)
+    fun provideTokenRepository(api: ApiInterface): AccessTokenRepository {
+        return AccessTokenRepositoryImpl(api = api)
+    }
+
+    @Provides
+    @Singleton
+    fun provideConsentRepository(api: ApiInterface): ConsentRepository {
+        return ConsentRepositoryImpl(api = api)
     }
 }

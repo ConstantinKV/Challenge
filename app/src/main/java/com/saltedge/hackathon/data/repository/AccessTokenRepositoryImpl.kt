@@ -2,12 +2,12 @@ package com.saltedge.hackathon.data.repository
 
 import com.saltedge.hackathon.data.remote.ApiInterface
 import com.saltedge.hackathon.data.remote.dto.token.AccessTokenResponse
-import com.saltedge.hackathon.domain.repository.TokenRepository
+import com.saltedge.hackathon.domain.repository.AccessTokenRepository
 import javax.inject.Inject
 
-class TokenRepositoryImpl @Inject constructor(
+class AccessTokenRepositoryImpl @Inject constructor(
     private val api: ApiInterface
-) : TokenRepository {
+) : AccessTokenRepository {
 
     override suspend fun requestToken(
         grantType: String,

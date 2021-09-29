@@ -2,7 +2,7 @@ package com.saltedge.hackathon.domain.repository
 
 import com.saltedge.hackathon.data.remote.dto.token.AccessTokenResponse
 
-interface TokenRepository {
+interface AccessTokenRepository {
 
     suspend fun requestToken(
         grantType: String,
