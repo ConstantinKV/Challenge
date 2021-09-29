@@ -2,6 +2,7 @@ package com.saltedge.hackathon.di
 
 import com.saltedge.hackathon.common.Constants
 import com.saltedge.hackathon.data.remote.ApiInterface
+import com.saltedge.hackathon.data.remote.network.createHttpLoginInterceptor
 import com.saltedge.hackathon.data.remote.network.getUnsafeOkHttpClient
 import com.saltedge.hackathon.data.repository.AccountRepositoryImpl
 import com.saltedge.hackathon.data.repository.ConsentRepositoryImpl
@@ -37,6 +38,7 @@ object AppModule {
     @Singleton
     fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
+            .addInterceptor(createHttpLoginInterceptor())
             .getUnsafeOkHttpClient()
             .build()
     }

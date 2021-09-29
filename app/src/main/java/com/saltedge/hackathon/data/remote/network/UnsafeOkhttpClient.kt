@@ -1,6 +1,8 @@
 package com.saltedge.hackathon.data.remote.network
 
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import java.lang.Exception
 import java.lang.RuntimeException
 import java.security.KeyStore
@@ -48,5 +50,11 @@ fun OkHttpClient.Builder.getUnsafeOkHttpClient(): OkHttpClient.Builder {
         return this
     } catch (e: Exception) {
         throw RuntimeException(e)
+    }
+}
+
+fun createHttpLoginInterceptor(): Interceptor {
+    return HttpLoggingInterceptor().apply {
+        level = HttpLoggingInterceptor.Level.BODY
     }
 }

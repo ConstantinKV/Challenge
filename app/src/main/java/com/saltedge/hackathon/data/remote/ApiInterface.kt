@@ -22,13 +22,12 @@ interface ApiInterface {
 
     //TODO:  remove the hard code and think about how to take everything out to some HeaderInterceptor
     @Headers(
-        "Authorization: Bearer ACCESS_TOKEN",
         "Accept: application/json",
         "Content-Type: application/json"
     )
     @POST("/open-banking/v3.1/aisp/account-access-consents")
     suspend fun createConsent(
-        @Header("ACCESS_TOKEN") accessToken: String,
+        @Header("Authorization") accessToken: String,
         @Body body: CreateConsentRequest
     ): ConsentResponse
 
