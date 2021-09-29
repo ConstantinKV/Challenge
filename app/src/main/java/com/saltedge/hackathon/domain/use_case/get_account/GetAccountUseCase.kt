@@ -15,14 +15,14 @@ class GetAccountUseCase @Inject constructor(
 
     operator fun invoke(accountId: String): Flow<Resource<Account>> = flow {
         try {
-            emit(Resource.Loading())
+            emit(Resource.Loading<Account>())
             val account: Account? = repository.getAccountById(accountId = accountId)
-            if (account != null) emit(Resource.Success(account))
-            else emit(Resource.Error("There is no account with this id"))
+            if (account != null) emit(Resource.Success<Account>(account))
+            else emit(Resource.Error<Account>("There is no account with this id"))
         } catch (e: HttpException) {
-            emit(Resource.Error(message = e.localizedMessage ?: "An unexpected error occured"))
+            emit(Resource.Error<Account>(message = e.localizedMessage ?: "An unexpected error occured"))
         } catch (e: IOException) {
-            emit(Resource.Error(message = "Couldn't reach server. Check your Internet connection"))
+            emit(Resource.Error<Account>(message = "Couldn't reach server. Check your Internet connection"))
         }
     }
 }
