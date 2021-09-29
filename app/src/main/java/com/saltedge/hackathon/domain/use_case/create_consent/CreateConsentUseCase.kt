@@ -33,7 +33,7 @@ class CreateConsentUseCase @Inject constructor(
                 risk = Risk()
             )
             val consent: ConsentResponse = repository.createConsent(
-                accessToken = accessToken,
+                accessToken = "Bearer $accessToken",
                 body = requestBody
             )
             emit(Resource.Success<ConsentResponse>(consent))
